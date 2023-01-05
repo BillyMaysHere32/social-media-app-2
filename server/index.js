@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import postRoutes from './routes/posts.js';
 
 const app = express();
 
@@ -9,7 +10,16 @@ const app = express();
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
+// need to have above app.use routes
 app.use(cors());
+
+// add /posts to every route in ./routes/posts
+app.use('/posts', postRoutes);
+
+// greeting route
+app.get('/', (req, res) => {
+    res.send('Hello, welcome to social media app API')
+});
 
 //set the strictQuery option to true globally to suppress the warning
 mongoose.set('strictQuery', true);
