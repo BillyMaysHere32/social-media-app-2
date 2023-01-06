@@ -26,9 +26,11 @@ mongoose.set('strictQuery', true);
 
 // DB Connection
 const URL = "mongodb+srv://admin:1234@cluster0.ag5ph2d.mongodb.net/?retryWrites=true&w=majority"
+
 const PORT = process.env.PORT|| 4000;
 
 mongoose.connect(URL, { useUnifiedTopology: true, useNewUrlParser: true })
+    // if successfull listen to PORT
     .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
     .catch((error) => console.log(`${error} did not connect`));
 
