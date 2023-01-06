@@ -1,8 +1,13 @@
 import React from 'react'
 import Post from './Post/Post'
 import { Container, } from "react-bootstrap";
+import { useSelector } from 'react-redux';
 
 export default function Posts() {
+  //fetch data from global redux store
+  const posts = useSelector((state) => state.posts);
+  console.log(posts);
+
   return (
 
     <Container>

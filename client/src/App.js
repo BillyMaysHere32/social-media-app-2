@@ -13,6 +13,12 @@ import { Store } from "./pages/Store"
 import { About } from "./pages/About"
 
 function App() {
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <Container>
