@@ -1,8 +1,21 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import Post from './Post/Post'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, } from "react-bootstrap";
 
+export default function Posts() {
+  return (
+
+    <Container>
+        <h1>Recent Posts</h1>
+        <Post />
+        <Post />
+    </Container>
+    // <Row md={2} xs={1} lg={3} className="g-3">
+    //         {storeItems.map(item => (
+    //           <Col key={item.id}>
+    //             <Post {...item} />
+    //         </Col>
+    //     ))}
+    //   </Row>
+  )
+}

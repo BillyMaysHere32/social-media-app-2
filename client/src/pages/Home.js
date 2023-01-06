@@ -1,7 +1,18 @@
+import { Container, Row, Col } from "react-bootstrap";
+import Posts from '../components/Posts/Posts';
+import Form from '../components/Form/Form';
+
 export function Home() {
-    return (
-      <div>
-        <h1>Home</h1>
-      </div>
+    return (   
+      <Container> 
+        <Row>
+          <Col>
+            <Posts />
+          </Col>
+          <Col>
+            <Form />
+          </Col>
+        </Row>
+      </Container> 
     )
   }

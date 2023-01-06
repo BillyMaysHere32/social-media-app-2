@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts'
 // import logo from './images/logo.jpg';
 import Posts from "./components/Posts/Posts";
-import FormComponent from "./components/Form/FormComponent";
+import FormComponent from "./components/Form/Form";
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from "./components/Navbar"
