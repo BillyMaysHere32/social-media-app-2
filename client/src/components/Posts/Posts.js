@@ -1,6 +1,6 @@
 import React from 'react'
 import Post from './Post/Post'
-import { Container, } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from 'react-redux';
 
 export default function Posts() {
@@ -9,18 +9,28 @@ export default function Posts() {
   console.log(posts);
 
   return (
-
     <Container>
         <h1>Recent Posts</h1>
-        <Post />
-        <Post />
+        {/* <Post />
+        <Post /> */}
+ 
+     <Row md={2} xs={1} lg={3} className="g-3">
+             {posts.map((post) => (
+              <Col key={post.id}>
+                <Post post={post} />
+            </Col>
+        ))}
+      </Row>
     </Container>
-    // <Row md={2} xs={1} lg={3} className="g-3">
-    //         {storeItems.map(item => (
-    //           <Col key={item.id}>
-    //             <Post {...item} />
-    //         </Col>
+
+    // !posts.length ? <CircularProgress /> : (
+    //   <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+    //      {posts.map((post) => (
+    //       <Grid key={post._id} item xs={12} sm={6} md={6}>
+    //         <Post post={post} setCurrentId={setCurrentId} />
+    //       </Grid>
     //     ))}
-    //   </Row>
+    //   </Grid>
+    // )
   )
 }
