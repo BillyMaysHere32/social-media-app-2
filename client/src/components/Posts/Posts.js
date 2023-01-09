@@ -16,7 +16,7 @@ export default function Posts() {
  
      <Row md={2} xs={1} lg={3} className="g-3">
              {posts.map((post) => (
-              <Col key={post.id}>
+              <Col key={post._id}>
                 <Post post={post} />
             </Col>
         ))}

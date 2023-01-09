@@ -4,11 +4,6 @@ import { Button, Card } from 'react-bootstrap'
 export default function Post({ post, setCurrentId }) {
 
   return (
-    // <div>
-    //   <h1>Post</h1>
-    // </div>
-   
-
 <Card className='h-100'>
 <Card.Img variant="top" src={post.selectedFile} height="200px" style={{ objectFit: "cover"}} />
 
@@ -23,6 +18,8 @@ export default function Post({ post, setCurrentId }) {
 </Card.Body>
 </Card> 
 
-
+    // <div>
+    //   <h1>Post</h1>
+    // </div>
   )
 }
