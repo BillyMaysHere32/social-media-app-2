@@ -7,7 +7,7 @@ export function Navbar() {
   return (
     <NavbarBoot sticky="top" className="bg-white shadow-sm mb-3">
         <Container>
-            <Nav className="me-auto fs-4">
+            {/* <Nav className="me-auto fs-4">
                 <Nav.Link to="/" as={NavLink}>
                     Home
                 </Nav.Link>
@@ -17,7 +17,7 @@ export function Navbar() {
                 <Nav.Link to="/about" as={NavLink}>
                     About
                 </Nav.Link>
-            </Nav>
+            </Nav> */}
             <img
                 src={ logo }
                 // src='https://mdbootstrap.com/img/new/standard/city/041.webp'
