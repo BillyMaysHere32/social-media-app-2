@@ -35,7 +35,7 @@ export default function Form({ currentId, setCurrentId }) {
   };
 
   return (
-    <Container id="main-container" className="d-grid h-100">
+    <Container id="main-container" className="d-grid bg-light h-100">
       <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center p-3 w-100">
         <h1 className="mb-3 fs-3 fw-normal">Create a Post!</h1>
 
