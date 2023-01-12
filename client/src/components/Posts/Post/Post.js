@@ -23,7 +23,7 @@ export default function Post({ post, setCurrentId }) {
       </div>
       <div>
         <Button className="pt-0 fs-4 text-white" size="lg" variant="primary-outline"
-        onClick={() => {}}><FaEdit /></Button>
+        onClick={() => setCurrentId(post._id)}><FaEdit /></Button>
       </div>
     </Card.ImgOverlay>
 

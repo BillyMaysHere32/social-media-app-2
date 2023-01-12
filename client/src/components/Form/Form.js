@@ -1,5 +1,5 @@
 import React,  { useState, useEffect } from 'react';
-import { createPost } from '../../actions/posts';
+import { createPost, updatePost } from '../../actions/posts';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
@@ -10,28 +10,30 @@ import './styles.css';
 
 export default function Form({ currentId, setCurrentId }) {
   const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
-  // const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
+  const post = useSelector((state) => (currentId ? state.posts.find((post) => post._id === currentId) : null));
   const dispatch = useDispatch();
 
   // populate values of form when post value changes
 
-  // useEffect(() => {
-  //   if (post) setPostData(post);
-  // }, [post]);
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // to avoid refresh
-    // if (currentId === 0) {
+    if (currentId === 0) {
       dispatch(createPost(postData));
-      // clear();
-    // } else {
-    //   // dispatch(updatePost(currentId, postData));
-    //   clear();
-    // }
+      clear();
+    } else {
+      dispatch(updatePost(currentId, postData));
+      clear();
+    }
   };
 
   const clear = (e) => {
+    setCurrentId(0);
+    setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
   };
 
   return (
@@ -96,14 +98,3 @@ export default function Form({ currentId, setCurrentId }) {
   </Container>
   )
 }
-
-
-// import React from 'react'
-
-// export default function Form() {
-//   return (
-//     <div>
-//       <h1>Form</h1>
-//     </div>
-//       )
-//     }

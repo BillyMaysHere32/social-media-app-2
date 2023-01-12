@@ -3,10 +3,10 @@ import Post from './Post/Post'
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from 'react-redux';
 
-export default function Posts() {
+export default function Posts({ setCurrentId }) {
   //fetch data from global redux store
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
+  //console.log(posts);
 
   return (
     <Container>
@@ -15,7 +15,7 @@ export default function Posts() {
       <Row md={1} xs={1} lg={1} xxl={2} className="g-3">
         {posts.map((post) => (
           <Col key={post._id}>
-            <Post post={post} />
+            <Post post={post} setCurrentId={setCurrentId} />
           </Col>
         ))}
       </Row>

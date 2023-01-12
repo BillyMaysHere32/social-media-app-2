@@ -4,6 +4,7 @@ import Posts from '../components/Posts/Posts';
 import Form from '../components/Form/Form';
 
 export function Home() {
+  // set id where we can pass to posts and form 
   const [currentId, setCurrentId] = useState(0);
 
     return (   

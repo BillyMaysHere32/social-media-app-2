@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { Navbar } from "./components/Navbar"
 import  Posts  from "./components/Posts/Posts";
@@ -25,16 +25,7 @@ function App() {
   return (
     <Container>
       <Navbar />
-      {/* <Container> 
-        <Row>
-          <Col>
-            <Posts />
-          </Col>
-          <Col>
-            <Form />
-          </Col>
-        </Row>
-      </Container>  */}
+
 
       <Container className="mb-4">
         <Routes>
