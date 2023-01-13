@@ -46,40 +46,41 @@ export default function Form({ currentId, setCurrentId }) {
 
         <FloatingLabel
         controlId="creator"
-        label={currentId ? `${postData.creator}` : "Creator"}
+        label={!currentId ? "Creator" : `${postData.creator}`}
         className="mb-3"
-        value={postData.creator}
-        onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
-        ><FormBoot.Control as="textarea" placeholder="Leave a message here" />
+        ><FormBoot.Control as="textarea" placeholder="Leave a message here" 
+          value={postData.creator} 
+          onChange={(e) => setPostData({ ...postData, creator: e.target.value })}/>
         </FloatingLabel>
 
         <FloatingLabel
         controlId="title"
         label={currentId ? `${postData.title}` : "Title"}
         className="mb-3"
-        value={postData.title}
-        onChange={(e) => setPostData({ ...postData, title: e.target.value })}
-        ><FormBoot.Control as="textarea" placeholder="Enter title here" />
+        ><FormBoot.Control as="textarea" placeholder="Enter title here" 
+          value={postData.title}
+          onChange={(e) => setPostData({ ...postData, title: e.target.value })}/>
         </FloatingLabel>
 
 
         <FloatingLabel
         controlId="message"
         label={currentId ? `${postData.message}` : "Message"}
-        className="mb-3"value={postData.message}
-        onChange={(e) => setPostData({ ...postData, message: e.target.value })}
-        ><FormBoot.Control as="textarea" placeholder="Leave a message here" />
+        className="mb-3"
+        ><FormBoot.Control as="textarea" placeholder="Leave a message here" 
+          value={postData.message}
+          onChange={(e) => setPostData({ ...postData, message: e.target.value })}/>
         </FloatingLabel>
 
 
-        <FloatingLabel
+        {/* <FloatingLabel
         controlId="tags"
         label={currentId ? `${postData.tags}` : "Tags"}
         className="mb-3"
         value={postData.tags}
         onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
         ><FormBoot.Control as="textarea" placeholder="Leave a message here" />
-        </FloatingLabel>
+        </FloatingLabel> */}
 
         <FormBoot.Group controlId="picture" className="mb-3">
           {/* <FormBoot.Control type="file" size="sm" /> */}
