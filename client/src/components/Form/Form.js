@@ -19,6 +19,8 @@ export default function Form({ currentId, setCurrentId }) {
     if (post) setPostData(post);
   }, [post]);
 
+  console.log(postData)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // to avoid refresh
@@ -39,45 +41,43 @@ export default function Form({ currentId, setCurrentId }) {
   return (
     <Container id="main-container" className="d-grid bg-light h-100">
       <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center p-3 w-100">
-        <h1 className="mb-3 fs-3 fw-normal">Create a Post!</h1>
+        <h1 className="mb-3 fs-3 fw-normal">{currentId ? `Make changes to "${post.title}"` : "Create a Post!"}</h1>
 
         <FloatingLabel
         controlId="creator"
-        label="Creator"
+        label={currentId ? `${postData.creator}` : "Creator"}
         className="mb-3"
         value={postData.creator}
         onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
-        >
-          <FormBoot.Control as="textarea" placeholder="Leave a message here" />
+        ><FormBoot.Control as="textarea" placeholder="Leave a message here" />
         </FloatingLabel>
 
         <FloatingLabel
         controlId="title"
-        label="Title"
+        label={currentId ? `${postData.title}` : "Title"}
         className="mb-3"
         value={postData.title}
         onChange={(e) => setPostData({ ...postData, title: e.target.value })}
-        >
-          <FormBoot.Control as="textarea" placeholder="Leave a message here" />
+        ><FormBoot.Control as="textarea" placeholder="Enter title here" />
         </FloatingLabel>
+
 
         <FloatingLabel
         controlId="message"
-        label="Message"
+        label={currentId ? `${postData.message}` : "Message"}
         className="mb-3"value={postData.message}
         onChange={(e) => setPostData({ ...postData, message: e.target.value })}
-        >
-          <FormBoot.Control as="textarea" placeholder="Leave a message here" />
+        ><FormBoot.Control as="textarea" placeholder="Leave a message here" />
         </FloatingLabel>
+
 
         <FloatingLabel
         controlId="tags"
-        label="Tags"
+        label={currentId ? `${postData.tags}` : "Tags"}
         className="mb-3"
         value={postData.tags}
         onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
-        >
-          <FormBoot.Control as="textarea" placeholder="Leave a message here" />
+        ><FormBoot.Control as="textarea" placeholder="Leave a message here" />
         </FloatingLabel>
 
         <FormBoot.Group controlId="picture" className="mb-3">
