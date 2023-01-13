@@ -20,6 +20,7 @@ export default function Form({ currentId, setCurrentId }) {
   }, [post]);
 
   console.log(postData)
+  console.log(currentId)
 
   const handleSubmit = (e) => {
     e.preventDefault();

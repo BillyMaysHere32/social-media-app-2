@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { Navbar } from "./components/Navbar"
 import { getPosts } from './actions/posts'
@@ -12,18 +12,20 @@ import { About } from "./pages/About"
 
 
 function App() {
+  // set id where we can pass to posts and form 
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
   return (
     <Container>
       <Navbar />
       <Container className="mb-4">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home currentId={currentId} setCurrentId={setCurrentId}/>} />
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
         </Routes>
