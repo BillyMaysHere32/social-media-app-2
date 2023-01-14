@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
 
-import { Button, Card, Container } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import { FaThumbsUp } from 'react-icons/fa';
 import { FaEdit } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const url = "http://localhost:4000/posts";
-// const url = 'https://social-media.herokuapp.com/posts';
+//const url = "http://localhost:4000/posts";
+const url = 'https://social-media-app-2.herokuapp.com/posts';
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);

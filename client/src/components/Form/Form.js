@@ -8,16 +8,30 @@ import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import './styles.css';
 
+import Modal from 'react-bootstrap/Modal';
+
 export default function Form({ currentId, setCurrentId }) {
+  // data in form inputs
   const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+  // if current id, find that specific post
   const post = useSelector((state) => (currentId ? state.posts.find((post) => post._id === currentId) : null));
   const dispatch = useDispatch();
 
-  // populate values of form when post value changes
+  // modal state
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false); 
+  const handleShow = () => setShow(true);
+  const formClose = () => {setShow(false); clear()}
 
+  // populate values of form when post value changes
   useEffect(() => {
-    if (post) setPostData(post);
+    if (post) setPostData(post); 
   }, [post]);
+
+  // populate update post form
+  useEffect(() => {
+    if (currentId) setShow(true);
+  }, [currentId]);
 
   console.log(postData)
   console.log(currentId)
@@ -40,6 +54,17 @@ export default function Form({ currentId, setCurrentId }) {
   };
 
   return (
+    <>
+    <Button variant="primary" onClick={handleShow}>
+    Create Post
+  </Button>
+
+    <Modal show={show} onHide={handleClose} dialogClassName="modal-90w">
+    <Modal.Header closeButton onClick={formClose}>
+      <Modal.Title>Post Details</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+
     <Container id="main-container" className="d-grid bg-light h-100">
       <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center p-3 w-100">
         <h1 className="mb-3 fs-3 fw-normal">{currentId ? `Make changes to "${post.title}"` : "Create a Post!"}</h1>
@@ -95,8 +120,17 @@ export default function Form({ currentId, setCurrentId }) {
           <Button variant="secondary" onClick={clear} size="sm">Clear</Button>
         </div>
 
-        <p className="mt-5 text-muted">&copy; 2021-2022</p>
+        <p className="mt-5 text-muted">&copy; 2022-2023</p>
       </FormBoot>
   </Container>
+
+  </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={formClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </>
   )
 }

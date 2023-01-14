@@ -29,11 +29,11 @@ const URL = "mongodb+srv://admin:1234@cluster0.ag5ph2d.mongodb.net/?retryWrites=
 
 const PORT = process.env.PORT|| 4000;
 
-mongoose.connect(URL, { useUnifiedTopology: true, useNewUrlParser: true })
-    // if successfull listen to PORT
-    .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-    .catch((error) => console.log(`${error} did not connect`));
-
-// mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
+// mongoose.connect(process.env.CONNECTION_URL, { useUnifiedTopology: true, useNewUrlParser: true })
+//     // if successfull listen to PORT
 //     .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
 //     .catch((error) => console.log(`${error} did not connect`));
+
+mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
+    .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+    .catch((error) => console.log(`${error} did not connect`));

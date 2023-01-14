@@ -10,9 +10,9 @@ export default function Posts({ setCurrentId }) {
 
   return (
     <Container>
-      <h1>Recent Posts</h1>
+      {/* <h1>Recent Posts</h1> */}
  
-      <Row md={1} xs={1} lg={1} xxl={2} className="g-3">
+      <Row md={2} xs={1} lg={2} xl={3} className="g-3">
         {posts.map((post) => (
           <Col key={post._id}>
             <Post post={post} setCurrentId={setCurrentId} />
