@@ -65,8 +65,8 @@ export default function Form({ currentId, setCurrentId }) {
     </Modal.Header>
     <Modal.Body>
 
-    <Container id="main-container" className="d-grid bg-light h-100">
-      <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center p-3 w-100">
+    <Container id="main-container" className="bg-light">
+      <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center">
         <h1 className="mb-3 fs-3 fw-normal">{currentId ? `Make changes to "${post.title}"` : "Create a Post!"}</h1>
 
         <FloatingLabel
