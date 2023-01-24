@@ -1,8 +1,12 @@
-import { Container, Nav, Navbar as NavbarBoot } from "react-bootstrap"
+import { GoogleLogin, googleLogout } from '@react-oauth/google'
+import { Navbar as NavbarBoot } from "react-bootstrap"
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import { NavLink } from "react-router-dom"
 import logo from "./images/logo.jpg";
 
 export function Navbar() {
+    const user = false;
     
   return (
     <NavbarBoot sticky="top" className="bg-white shadow-sm mb-3">
@@ -18,6 +22,21 @@ export function Navbar() {
                     Contact
                 </Nav.Link>
             </Nav>
+            <div>
+                {user ? (
+                    <div>
+                        Logged In
+                        {/* <img src={user.result.imgUrl}>{user.result.name.charAt(0)</img>
+                        <div className="user">{user.result.name}</div>
+                        <Button>Logout</Button> */}
+                    </div>
+                ) : (
+                    <GoogleLogin
+                        onSucess={(response) => console.log(response)}
+                        onError={() => console.log('Error')}
+                    />
+                )}
+            </div>
             <img
                 src={ logo }
                 // src='https://mdbootstrap.com/img/new/standard/city/041.webp'

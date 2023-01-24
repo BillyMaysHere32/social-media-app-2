@@ -1,5 +1,7 @@
-import { Container, Row, Col } from "react-bootstrap";
-import React, { useState } from "react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+// import React, { useState } from "react";
 import Posts from '../components/Posts/Posts';
 import Form from '../components/Form/Form';
 
@@ -9,26 +11,15 @@ export function Home({ currentId, setCurrentId }) {
 
     return (   
       <Container className="pe-0 ps-0"> 
-      <div className="p-3 d-flex flex-row justify-content-between">
-        <h1>Recent Posts</h1>
-        <Form currentId={currentId} setCurrentId={setCurrentId}/>
-      </div>
-      <Row>
-        <Col>
-          <Posts setCurrentId={setCurrentId} />
-        </Col>
-      </Row>
-    </Container> 
-
-      // <Container className="pe-0 ps-0"> 
-      //   <Row md={1} lg={2}>
-      //     <Col md={8} xxl={8}>
-      //       <Posts setCurrentId={setCurrentId} />
-      //     </Col>
-      //     <Col xxl={4}>
-      //       <div><Form currentId={currentId} setCurrentId={setCurrentId}/></div>
-      //     </Col>
-      //   </Row>
-      // </Container> 
+        <div className="p-3 d-flex flex-row justify-content-between">
+          <h1>Recent Posts</h1>
+          <Form currentId={currentId} setCurrentId={setCurrentId}/>
+        </div>
+        <Row>
+          <Col>
+            <Posts setCurrentId={setCurrentId} />
+          </Col>
+        </Row>
+      </Container> 
     )
   }

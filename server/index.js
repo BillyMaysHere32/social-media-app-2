@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 // need to have above app.use routes
 app.use(cors());
 
+
 // add /posts to every route in ./routes/posts
 app.use('/posts', postRoutes);
 
