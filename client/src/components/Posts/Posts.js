@@ -2,6 +2,7 @@ import React from 'react'
 import Post from './Post/Post'
 import { Container, Row, Col } from "react-bootstrap";
 import { useSelector } from 'react-redux';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Posts({ setCurrentId }) {
   //fetch data from global redux store
@@ -9,9 +10,8 @@ export default function Posts({ setCurrentId }) {
   //console.log(posts);
 
   return (
+    !posts.length ? <Spinner animation="border" /> : (
     <Container>
-      {/* <h1>Recent Posts</h1> */}
- 
       <Row md={2} xs={1} lg={2} xl={3} className="g-3">
         {posts.map((post) => (
           <Col key={post._id}>
@@ -20,6 +20,7 @@ export default function Posts({ setCurrentId }) {
         ))}
       </Row>
     </Container>
+    )
 
     // !posts.length ? <CircularProgress /> : (
     //   <Grid className={classes.container} container alignItems="stretch" spacing={3}>

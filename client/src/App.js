@@ -7,8 +7,8 @@ import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from "react-router-dom"
 import { Home } from "./pages/Home"
-import { Store } from "./pages/Store"
 import { About } from "./pages/About"
+import { Contact } from "./pages/Contact"
 
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
       <Container className="mb-4">
         <Routes>
           <Route path="/" element={<Home currentId={currentId} setCurrentId={setCurrentId}/>} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
         </Routes>
       </Container>
     </Container>
