@@ -1,5 +1,5 @@
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
-import { Navbar as NavbarBoot } from "react-bootstrap"
+import { Button, Navbar as NavbarBoot } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from "react-router-dom"
@@ -31,10 +31,13 @@ export function Navbar() {
                         <Button>Logout</Button> */}
                     </div>
                 ) : (
+                    <div className="d-flex flex-row ">
+                    <Button>Sign In</Button>
                     <GoogleLogin
                         onSucess={(response) => console.log(response)}
                         onError={() => console.log('Error')}
                     />
+                    </div>
                 )}
             </div>
             <img
