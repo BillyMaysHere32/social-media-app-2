@@ -1,5 +1,5 @@
 import React,  { useState, useEffect } from 'react';
-import { createPost, updatePost } from '../../actions/posts';
+import { createPost, updatePost } from '../actions/posts';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
@@ -7,7 +7,7 @@ import { Form as FormBoot } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import './styles.css';
+
 
 import Modal from 'react-bootstrap/Modal';
 

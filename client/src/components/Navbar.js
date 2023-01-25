@@ -3,7 +3,8 @@ import { Button, Navbar as NavbarBoot } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from "react-router-dom"
-import logo from "./images/logo.jpg";
+import logo from "../assests/logo.jpg";
+import Auth from '../components/Auth'
 
 export function Navbar() {
     const user = false;
@@ -32,7 +33,7 @@ export function Navbar() {
                     </div>
                 ) : (
                     <div className="d-flex flex-row ">
-                    <Button>Sign In</Button>
+                    <Auth />
                     <GoogleLogin
                         onSucess={(response) => console.log(response)}
                         onError={() => console.log('Error')}
@@ -42,7 +43,6 @@ export function Navbar() {
             </div>
             <img
                 src={ logo }
-                // src='https://mdbootstrap.com/img/new/standard/city/041.webp'
                 className='img-fluid hover-shadow rounded-circle'
                 style={{ width: "75px", height: "75px", objectFit: "cover" }}
                 alt='...'
