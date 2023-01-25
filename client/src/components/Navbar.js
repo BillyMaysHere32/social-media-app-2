@@ -32,7 +32,7 @@ export function Navbar() {
                         <Button>Logout</Button> */}
                     </div>
                 ) : (
-                    <div className="d-flex flex-row ">
+                    <div className="d-flex flex-row">
                     <Auth />
                     <GoogleLogin
                         onSucess={(response) => console.log(response)}
@@ -43,7 +43,7 @@ export function Navbar() {
             </div>
             <img
                 src={ logo }
-                className='img-fluid hover-shadow rounded-circle'
+                className='ms-3 img-fluid hover-shadow rounded-circle'
                 style={{ width: "75px", height: "75px", objectFit: "cover" }}
                 alt='...'
             />
