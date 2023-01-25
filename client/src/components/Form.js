@@ -42,10 +42,10 @@ export default function Form({ currentId, setCurrentId }) {
     // to avoid refresh
     if (currentId === 0) {
       dispatch(createPost(postData));
-      clear();
+      formClose();
     } else {
       dispatch(updatePost(currentId, postData));
-      clear();
+      formClose();
     }
   };
 

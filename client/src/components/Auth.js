@@ -30,7 +30,7 @@ export default function Auth() {
             </Modal.Header>
             <Modal.Body>
                 <Container id="main-container" className="bg-light">
-                    <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center">
+                    <FormBoot onSubmit={handleSubmit} noValidate id="sign-up-form" className="text-center">
                         <h1 className="mb-3 fs-3 fw-normal">"Auth"</h1>
 
 
