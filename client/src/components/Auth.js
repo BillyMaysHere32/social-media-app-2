@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { GoogleLogin, googleLogout } from '@react-oauth/google'
 import Modal from 'react-bootstrap/Modal';
 
 import { Form } from "react-bootstrap"
@@ -13,11 +14,15 @@ export default function Auth() {
   const handleShow = () => setShow(true);
   const formClose = () => {setShow(false)};
 
-  const isSignUp = true;
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // to avoid refresh
+  };
+
+  const switchMode = () => {
+    setIsSignUp((prevIsSignUp) => !prevIsSignUp);
   };
 
   return (
@@ -80,6 +85,13 @@ export default function Auth() {
 
                         <div className="d-grid mt-4 mb-2">
                             <Button variant="primary" type="submit" size="lg">{isSignUp ? "Create Account" : "Log In"}</Button>
+                            <Button variant="secondary" className="mt-2 mb-2" 
+                                onClick={switchMode}>{ isSignUp ? 'Already have an account? Log in' : "Don't have an account? Sign Up" }
+                            </Button>
+                            <GoogleLogin
+                                onSucess={(response) => console.log(response)}
+                                onError={() => console.log('Error')}
+                            />
                         </div>
 
                         <p className="mt-5 text-muted">&copy; 2022-2023</p>
