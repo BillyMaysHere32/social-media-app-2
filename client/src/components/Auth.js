@@ -1,6 +1,9 @@
 import { React, useState } from 'react'
 import { GoogleLogin, googleLogout } from '@react-oauth/google'
 import Modal from 'react-bootstrap/Modal';
+import { useDispatch } from 'react-redux';
+import { AUTH } from '../constants/actionTypes';
+import jwt_decode from 'jwt-decode'
 
 import { Form } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
@@ -15,6 +18,7 @@ export default function Auth() {
   const formClose = () => {setShow(false)};
 
   const [isSignUp, setIsSignUp] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,12 +89,31 @@ export default function Auth() {
 
                         <div className="d-grid mt-4 mb-2">
                             <Button variant="primary" type="submit" size="lg">{isSignUp ? "Create Account" : "Log In"}</Button>
+      
                             <Button variant="secondary" className="mt-2 mb-2" 
                                 onClick={switchMode}>{ isSignUp ? 'Already have an account? Log in' : "Don't have an account? Sign Up" }
                             </Button>
+
                             <GoogleLogin
-                                onSucess={(response) => console.log(response)}
-                                onError={() => console.log('Error')}
+                                onSuccess={ async (res) => {
+                                    
+                                    const decoded = jwt_decode(res?.credential)
+                                    
+                                    
+                                    const result = res?.clientId;
+                                    const token = decoded;
+                                
+                                    try {
+                                      dispatch({ type: AUTH, data: { result, token } });
+                                
+                                    } catch (error) {
+                                      console.log(error);
+                                    }
+                                }}
+                                
+                                onError={() => {
+                                    console.log('Login Failed');
+                                }}
                             />
                         </div>
 

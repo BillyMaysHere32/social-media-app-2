@@ -34,8 +34,8 @@ export default function Form({ currentId, setCurrentId }) {
     if (currentId) setShow(true);
   }, [currentId]);
 
-  console.log(postData)
-  console.log(currentId)
+  // console.log(postData)
+  // console.log(currentId)
 
   const handleSubmit = (e) => {
     e.preventDefault();
