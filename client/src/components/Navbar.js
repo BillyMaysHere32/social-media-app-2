@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Navbar as NavbarBoot } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -8,7 +9,24 @@ import Auth from '../components/Auth'
 
 export function Navbar() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    console.log(user)
+    const dispatch = useDispatch();
+    // useEffect(() => {
+    //     const token = user?.token
+    //     console.log(token)
+
+    //     setUser(JSON.parse(localStorage.getItem('profile')));
+    // }, []);
+
+    function refreshPage() {
+        window.location.reload(false);
+      }
+
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' });
+        refreshPage();
+        setUser(null);
+    }
+
   return (
     <NavbarBoot sticky="top" className="bg-white shadow-sm mb-3">
         <Container>
@@ -41,18 +59,21 @@ export function Navbar() {
                         </img>
                         <div className="user">{user.token.name}</div>
                         </div>
-                        <Button variant="outline-primary">Logout</Button>
+                        <Button onClick={logout} variant="outline-primary">Logout</Button>
                     </div>
                 ) : ( 
-                    <Auth />
+                    <div className="d-flex flex-row align-items-center">
+                        <Auth />
+                        <img
+                        src={ logo }
+                        className='ms-3 img-fluid hover-shadow rounded-circle'
+                        style={{ width: "75px", height: "75px", objectFit: "cover" }}
+                        alt='...'
+                        />
+                    </div>
                 )}
             </div>
-            {/* <img
-                src={ logo }
-                className='ms-3 img-fluid hover-shadow rounded-circle'
-                style={{ width: "75px", height: "75px", objectFit: "cover" }}
-                alt='...'
-            /> */}
+
         </Container>
     </NavbarBoot>
   )

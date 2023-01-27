@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../constants/actionTypes';
 import jwt_decode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom';
 
 import { Form } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
@@ -28,6 +29,10 @@ export default function Auth() {
   const switchMode = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
   };
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   return (
     <div className="me-1">
@@ -95,17 +100,15 @@ export default function Auth() {
                             </Button>
 
                             <GoogleLogin
-                                onSuccess={ async (res) => {
-                                    
+                                onSuccess={ async (res) => { 
                                     const decoded = jwt_decode(res?.credential)
-                                    
-                                    
                                     const result = res?.clientId;
                                     const token = decoded;
                                 
                                     try {
+                                      formClose();
                                       dispatch({ type: AUTH, data: { result, token } });
-                                
+                                      refreshPage();
                                     } catch (error) {
                                       console.log(error);
                                     }
