@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors());
 
 // add /posts to every route in ./routes/posts
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
 
 // greeting route
 app.get('/', (req, res) => {

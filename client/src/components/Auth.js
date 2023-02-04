@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../constants/actionTypes';
 import jwt_decode from 'jwt-decode'
+import { signin, signup } from '../actions/auth';
 
 import { Form } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
@@ -30,8 +31,15 @@ export default function Auth() {
   const handleSubmit = (e) => {
     // to avoid refresh
     e.preventDefault();
-    
     console.log(userData);
+
+    if (isSignUp) {
+        dispatch(signup(userData));
+        refreshPage();
+      } else {
+        dispatch(signin(userData));
+        refreshPage();
+      }
   };
 
   const switchMode = () => {
