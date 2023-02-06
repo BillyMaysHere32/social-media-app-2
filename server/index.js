@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -27,16 +29,8 @@ app.get('/', (req, res) => {
 //set the strictQuery option to true globally to suppress the warning
 mongoose.set('strictQuery', true);
 
-// DB Connection
-const URL = "mongodb+srv://admin:1234@cluster0.ag5ph2d.mongodb.net/?retryWrites=true&w=majority"
-
 const PORT = process.env.PORT|| 4000;
 
-// mongoose.connect(process.env.CONNECTION_URL, { useUnifiedTopology: true, useNewUrlParser: true })
-//     // if successfull listen to PORT
-//     .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-//     .catch((error) => console.log(`${error} did not connect`));
-
-mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect( process.env.CONNECTION_URL, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
     .catch((error) => console.log(`${error} did not connect`));

@@ -35,10 +35,10 @@ export default function Auth() {
 
     if (isSignUp) {
         dispatch(signup(userData));
-        refreshPage();
+        // refreshPage();
       } else {
         dispatch(signin(userData));
-        refreshPage();
+        // refreshPage();
       }
   };
 
