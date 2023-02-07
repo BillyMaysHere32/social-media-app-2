@@ -14,9 +14,13 @@ export const signin = (userData) => async (dispatch) => {
   
   export const signup = (userData) => async (dispatch) => {
     try {
+      console.log("action", userData)
+
       const { data } = await api.signUp(userData);
-  
-      dispatch({ type: AUTH, data });
+      
+      console.log("api", data)
+
+      dispatch({ type: AUTH, payload: data });
   
     } catch (error) {
       console.log(error);
