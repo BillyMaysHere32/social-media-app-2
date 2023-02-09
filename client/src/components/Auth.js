@@ -36,11 +36,11 @@ export default function Auth() {
     if (isSignUp) {
         formClose()
         dispatch(signup(userData));
-        refreshPage();
+        // refreshPage();
       } else {
         formClose()
         dispatch(signin(userData));
-        refreshPage();
+        // refreshPage();
       }
   };
 
@@ -139,7 +139,7 @@ export default function Auth() {
                                     try {
                                       formClose();
                                       dispatch({ type: AUTH, data: { result, token } });
-                                      refreshPage();
+                                      // refreshPage();
                                     } catch (error) {
                                       console.log(error);
                                     }
