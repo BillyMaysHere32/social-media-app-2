@@ -31,16 +31,16 @@ export default function Auth() {
   const handleSubmit = (e) => {
     // to avoid refresh
     e.preventDefault();
-    console.log(userData);
+    
 
     if (isSignUp) {
         formClose()
         dispatch(signup(userData));
-        // refreshPage();
+        refreshPage();
       } else {
         formClose()
         dispatch(signin(userData));
-        // refreshPage();
+        refreshPage();
       }
   };
 
