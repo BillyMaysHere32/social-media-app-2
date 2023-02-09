@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { GoogleLogin, googleLogout } from '@react-oauth/google'
+import { GoogleLogin } from '@react-oauth/google'
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../constants/actionTypes';
@@ -14,7 +14,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 export default function Auth() {
   // state 
-  const initialState = { firstName: '', lastName: '', userEmail: '', userPassword: '', confirmPassword: '' };
+  const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
   // sign up input state
   const [userData, setUserData] = useState(initialState);
@@ -34,9 +34,11 @@ export default function Auth() {
     console.log(userData);
 
     if (isSignUp) {
+        formClose()
         dispatch(signup(userData));
         // refreshPage();
       } else {
+        formClose()
         dispatch(signin(userData));
         // refreshPage();
       }
@@ -91,18 +93,18 @@ export default function Auth() {
 
                         {/* Email and Password inputs */}
                         <FloatingLabel
-                            controlId="userEmail"
+                            controlId="email"
                             label="Email"
                             className="mb-3"
                         ><Form.Control type="email" placeholder="name@example.com" 
-                            value={userData.userEmail}  
-                            onChange={(e) => setUserData({ ...userData, userEmail: e.target.value })}/>
+                            value={userData.email}  
+                            onChange={(e) => setUserData({ ...userData, email: e.target.value })}/>
                         </FloatingLabel>
 
-                        <FloatingLabel controlId="userPassword" label="Password">
+                        <FloatingLabel controlId="password" label="Password">
                             <Form.Control type="password" placeholder="Password" 
-                                value={userData.userPassword}  
-                                onChange={(e) => setUserData({ ...userData, userPassword: e.target.value })}/>
+                                value={userData.password}  
+                                onChange={(e) => setUserData({ ...userData, password: e.target.value })}/>
                             <Form.Text id="passwordHelpBlock" muted>
                                 Your password must be 8-20 characters long, contain letters and numbers,
                                 and must not contain spaces, special characters, or emoji.

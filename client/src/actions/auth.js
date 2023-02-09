@@ -5,7 +5,7 @@ export const signin = (userData) => async (dispatch) => {
     try {
       const { data } = await api.signIn(userData);
   
-      dispatch({ type: AUTH, data });
+      dispatch({ type: AUTH, payload:data });
   
     } catch (error) {
       console.log(error);

@@ -53,21 +53,8 @@ export const signup = async (req, res) => {
     
     res.status(201).json({ result, token });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong with server" });
+    res.status(500).json(error.response.data);
     
-    console.log(error);
+    console.log(error.response.data);
   }
-
-
-  // const { email, password, firstName, lastName } = req.body;
-
-  // const newUser = new UserModal({ email, password, firstName, lastName })
-
-  // try {
-  //     await newUser.save();
-
-  //     res.status(201).json(newUser);
-  // } catch (error) {
-  //     res.status(409).json({ message: error.message });
-  // }
 };
