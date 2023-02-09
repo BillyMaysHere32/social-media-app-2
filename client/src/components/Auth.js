@@ -133,13 +133,14 @@ export default function Auth() {
                             <GoogleLogin
                                 onSuccess={ async (res) => { 
                                     const decoded = jwt_decode(res?.credential)
-                                    const result = res?.clientId;
-                                    const token = decoded;
-                                
+                                    const token = res?.clientId;
+                                    const name = decoded.name;
+                                    const email = decoded.email;
+
                                     try {
                                       formClose();
-                                      dispatch({ type: AUTH, data: { result, token } });
-                                      // refreshPage();
+                                      dispatch({ type: AUTH, payload: { email, name, token } });
+                                      refreshPage()
                                     } catch (error) {
                                       console.log(error);
                                     }
