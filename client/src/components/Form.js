@@ -13,10 +13,11 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function Form({ currentId, setCurrentId }) {
   // data in form inputs
-  const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+  const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
   // if current id, find that specific post
   const post = useSelector((state) => (currentId ? state.posts.find((post) => post._id === currentId) : null));
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   // modal state
   const [show, setShow] = useState(false);
@@ -41,18 +42,24 @@ export default function Form({ currentId, setCurrentId }) {
     e.preventDefault();
     // to avoid refresh
     if (currentId === 0) {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.result?.name}));
       formClose();
     } else {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updatePost(currentId, { ...postData, name: user?.result?.name}));
       formClose();
     }
   };
 
   const clear = (e) => {
     setCurrentId(0);
-    setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+    setPostData({ title: '', message: '', tags: '', selectedFile: '' });
   };
+
+  if (!user?.result?.name) {
+    return (
+      <></>
+    )
+  }
 
   return (
     <>
@@ -70,14 +77,14 @@ export default function Form({ currentId, setCurrentId }) {
       <FormBoot onSubmit={handleSubmit} noValidate id="create-post-form" className="text-center">
         <h1 className="mb-3 fs-3 fw-normal">{currentId ? `Make changes to "${post.title}"` : "Create a Post!"}</h1>
 
-        <FloatingLabel
+        {/* <FloatingLabel
         controlId="creator"
         label={!currentId ? "Creator" : `${postData.creator}`}
         className="mb-3"
         ><FormBoot.Control as="textarea" placeholder="Leave a message here" 
           value={postData.creator} 
           onChange={(e) => setPostData({ ...postData, creator: e.target.value })}/>
-        </FloatingLabel>
+        </FloatingLabel> */}
 
         <FloatingLabel
         controlId="title"

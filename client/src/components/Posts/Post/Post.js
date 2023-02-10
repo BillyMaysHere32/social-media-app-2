@@ -11,6 +11,21 @@ import moment from 'moment'
 
 export default function Post({ post, setCurrentId }) {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
+
+  // Likes sub component
+  const Likes = () => {
+    if (post.likes.length > 0) {
+      return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
+        ? (
+          <>{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+        ) : (
+          <>{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+        );
+    }
+
+    return <>Like</>;
+  };
 
   return (
 <Card className='h-100'>
@@ -19,13 +34,18 @@ export default function Post({ post, setCurrentId }) {
     <Card.ImgOverlay className="d-flex flex-row justify-content-between">
         <div>
           <div>
-            <Card.Subtitle className="fs-2 text-white">{post.creator}</Card.Subtitle>
+            <Card.Subtitle className="fs-2 text-white">{post.name}</Card.Subtitle>
             <Card.Text className="text-white">{moment(post.createdAt).fromNow()}</Card.Text>
           </div>
         </div>
         <div>
-        <Button className="fs-5 text-white" variant="primary-outline" 
-            onClick={() => dispatch(likePost(post._id))}><FaThumbsUp /></Button>
+          <Button className="fs-5 text-white" 
+            variant="primary-outline" 
+            onClick={() => dispatch(likePost(post._id))}
+            disabled={!user?.result}
+            >
+              <FaThumbsUp />
+          </Button>
 
           <Button className="pt-0 fs-4 text-white" size="lg" variant="primary-outline"
             onClick={() => setCurrentId(post._id)}><FaEdit /></Button>
@@ -39,7 +59,7 @@ export default function Post({ post, setCurrentId }) {
       
 
   <Card.Body className="d-flex flex-column">
-    <Card.Text>{post.likeCount} Likes</Card.Text>
+    <Card.Text><Likes /></Card.Text>
     <Card.Title className="mb-4 fs-2"><span>{post.title}</span></Card.Title>
     <Card.Text>{post.message}</Card.Text>
     

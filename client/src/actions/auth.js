@@ -10,6 +10,7 @@ export const signin = (userData) => async (dispatch) => {
       const { data } = await api.signIn(userData);
   
       dispatch({ type: AUTH, payload:data });
+      console.log("api", data)
       refreshPage()
   
     } catch (error) {
@@ -22,7 +23,6 @@ export const signin = (userData) => async (dispatch) => {
       const { data } = await api.signUp(userData);
 
       dispatch({ type: AUTH, payload: data });
-      console.log("api", data)
       refreshPage()
   
     } catch (error) {

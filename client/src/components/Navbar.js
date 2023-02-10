@@ -49,15 +49,18 @@ export function Navbar() {
                             className='img-fluid hover-shadow rounded-circle'
                             style={{ width: "50px", height: "50px", objectFit: "cover" }}
                             alt='...'
-                            src={user?.token.picture ? (
-                                user?.token.picture ) : (
+                            src={user?.picture ? (
+                                user?.picture ) : (
                                     logo
-                                    
                                 )
                             }>
-
                         </img>
-                        <div className="user">{user.token.name}</div>
+                        <div className="user">{user?.name ? (
+                                user?.name ) : (
+                                    user.result.name
+                                )
+                            }</div>
+                        {/* <div className="user">{user.name}</div> */}
                         </div>
                         <Button onClick={logout} variant="outline-primary">Logout</Button>
                     </div>
