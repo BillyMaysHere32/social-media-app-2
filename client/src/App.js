@@ -7,6 +7,7 @@ import { Contact } from "./pages/Contact";
 import { Navbar } from "./components/Navbar";
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 
 

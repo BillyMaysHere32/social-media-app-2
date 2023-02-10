@@ -30,33 +30,35 @@ export default function Post({ post, setCurrentId }) {
   return (
 <Card className='h-100'>
   
-    <Card.Img variant="top" src={post.selectedFile} height="400px" style={{ objectFit: "cover"}} />
-    <Card.ImgOverlay className="d-flex flex-row justify-content-between">
-        <div>
-          <div>
-            <Card.Subtitle className="fs-2 text-white">{post.name}</Card.Subtitle>
-            <Card.Text className="text-white">{moment(post.createdAt).fromNow()}</Card.Text>
-          </div>
-        </div>
+  <Card.Img variant="top" src={post.selectedFile} height="400px" style={{ objectFit: "cover"}} />
+  <Card.ImgOverlay className="d-flex flex-row justify-content-between">
+    <div>
+      <Card.Subtitle className="fs-2 text-white">{post.name}</Card.Subtitle>
+      <Card.Text className="text-white">{moment(post.createdAt).fromNow()}</Card.Text>
+    </div>
+      
         <div>
           <Button className="fs-5 text-white" 
-            variant="primary-outline" 
-            onClick={() => dispatch(likePost(post._id))}
+            style={{ color:"#00005c", margin: "5%", boxShadow: "5px 5px 3px rgba(46, 46, 46, 0.62)"}}
             disabled={!user?.result}
+            onClick={() => dispatch(likePost(post._id))}
             >
               <FaThumbsUp />
           </Button>
-
-          <Button className="pt-0 fs-4 text-white" size="lg" variant="primary-outline"
-            onClick={() => setCurrentId(post._id)}><FaEdit /></Button>
-
-          <Button className="pt-0 fs-4 text-white" size="lg" variant="primary-outline" 
-            onClick={() => dispatch(deletePost(post._id))}><FaTrashAlt /></Button>
           
+          {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+            <div>
+              <Button className="pt-0 fs-4 text-white" size="lg" variant="primary-outline"
+                onClick={() => setCurrentId(post._id)}><FaEdit /></Button>
+                
+              <Button className="pt-0 fs-4 text-white" size="lg" variant="primary-outline" 
+                onClick={() => dispatch(deletePost(post._id))}><FaTrashAlt />
+            </Button>
+            </div>
+          )}
         </div>
-      </Card.ImgOverlay>
-      
-      
+    
+    </Card.ImgOverlay>
 
   <Card.Body className="d-flex flex-column">
     <Card.Text><Likes /></Card.Text>

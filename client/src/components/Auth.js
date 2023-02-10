@@ -1,9 +1,9 @@
 import { React, useState } from 'react'
-import { GoogleLogin } from '@react-oauth/google'
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
-import { AUTH } from '../constants/actionTypes';
-import jwt_decode from 'jwt-decode'
+// import { GoogleLogin } from '@react-oauth/google'
+// import { AUTH } from '../constants/actionTypes';
+// import jwt_decode from 'jwt-decode'
 import { signin, signup } from '../actions/auth';
 
 import { Form } from "react-bootstrap"
@@ -48,9 +48,9 @@ export default function Auth() {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
   };
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+//   function refreshPage() {
+//     window.location.reload(false);
+//   }
 
   return (
     <div className="me-1">
@@ -130,7 +130,7 @@ export default function Auth() {
                                     { isSignUp ? 'Already have an account? Log in' : "Don't have an account? Sign Up" }
                             </Button>
 
-                            <GoogleLogin
+                            {/* <GoogleLogin
                                 onSuccess={ async (res) => { 
                                     const decoded = jwt_decode(res?.credential)
                                     const token = res?.clientId;
@@ -149,7 +149,7 @@ export default function Auth() {
                                 onError={() => {
                                     console.log('Login Failed');
                                 }}
-                            />
+                            /> */}
                         </div>
 
                         <p className="mt-5 text-muted">&copy; 2022-2023</p>

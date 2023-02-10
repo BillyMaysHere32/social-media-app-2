@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import decode from 'jwt-decode';
 import { Button, Navbar as NavbarBoot } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -10,12 +11,17 @@ import Auth from '../components/Auth'
 export function Navbar() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     const token = user?.token
-    //     console.log(token)
-
-    //     setUser(JSON.parse(localStorage.getItem('profile')));
-    // }, []);
+    
+    useEffect(() => {
+        const token = user?.token
+        
+        if (token) {
+            const decodedToken = decode(token);
+      
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+          }
+        
+    }, []);
 
     function refreshPage() {
         window.location.reload(false);
@@ -30,6 +36,18 @@ export function Navbar() {
   return (
     <NavbarBoot sticky="top" className="bg-white shadow-sm mb-3">
         <Container>
+            <div className="d-flex flex-row align-items-center me-5">
+                <div className="d-flex flex-column align-items-center">
+                    {/* <img 
+                        className=''
+                        style={{ width: "150px", height: "50px", objectFit: "cover" }}
+                        alt='...'
+                        src= {logo}>
+                    </img> */}
+                    <div className="app-pic">Social Media App</div>
+                </div>
+            </div>
+
             <Nav className="me-auto fs-4">
                 <Nav.Link to="/" as={NavLink}>
                     Home
@@ -44,7 +62,7 @@ export function Navbar() {
             <div>
                 {user?.token ? (
                     <div className="d-flex flex-row align-items-center">
-                        <div className="p-3 d-flex flex-column align-items-center">
+                        {/* <div className="p-3 d-flex flex-column align-items-center"> */}
                         <img 
                             className='img-fluid hover-shadow rounded-circle'
                             style={{ width: "50px", height: "50px", objectFit: "cover" }}
@@ -55,14 +73,14 @@ export function Navbar() {
                                 )
                             }>
                         </img>
-                        <div className="user">{user?.name ? (
+                        <div className="ms-1 user">{user?.name ? (
                                 user?.name ) : (
                                     user.result.name
                                 )
                             }</div>
-                        {/* <div className="user">{user.name}</div> */}
-                        </div>
-                        <Button onClick={logout} variant="outline-primary">Logout</Button>
+                        {/* </div> */}
+                        <Button 
+                        className="ms-5" onClick={logout} variant="outline-primary">Logout</Button>
                     </div>
                 ) : ( 
                     <div className="d-flex flex-row align-items-center">

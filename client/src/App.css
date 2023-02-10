@@ -1,0 +1,13 @@
+.app-pic {
+    font-family: 'Bungee Shade', cursive;
+    background-image: url("https://mdbootstrap.com/img/Photos/Others/architecture.webp");
+    height: 5vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5%;
+}
+
+body {
+    background-color: rgb(248, 251, 251);
+}
